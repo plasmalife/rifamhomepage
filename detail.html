@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="리팜바이오(주) 제품 상세 정보">
+    <title>제품 상세 - 리팜바이오(주)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="detail.css">
+</head>
+
+<body>
+    <!-- 헤더 -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo" style="text-decoration:none;">
+                <span class="logo-highlight">과학 농업 기술의 선두 주자 !</span> 리팜바이오<span class="logo-corp">㈜</span>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="메뉴 열기">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="nav" id="mainNav">
+                <a href="index.html" class="nav-link">홈</a>
+                <a href="#" class="nav-link">공지사항</a>
+                <a href="#" class="nav-link">인사말</a>
+                <a href="#" class="nav-link">찾아오시는길</a>
+                <a href="#" class="nav-link">게시판</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 상세 페이지 콘텐츠 -->
+    <main class="detail-page">
+        <div class="detail-bg">
+            <img src="assets/bg-main.png" alt="" class="hero-bg-img">
+            <div class="hero-overlay"></div>
+        </div>
+
+        <div class="detail-container">
+            <a href="index.html" class="back-btn" id="backBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+                메인으로 돌아가기
+            </a>
+
+            <div class="detail-card animate-in" id="detailCard">
+                <div class="detail-header">
+                    <div class="detail-badge" id="detailBadge">제품 정보</div>
+                    <h1 class="detail-title" id="detailTitle">제품명</h1>
+                    <p class="detail-stage" id="detailStage">생육 단계</p>
+                </div>
+
+                <div class="detail-body">
+                    <div class="detail-section">
+                        <h2 class="section-title">제품 설명</h2>
+                        <p class="section-content" id="detailDescription">설명을 불러오는 중...</p>
+                    </div>
+
+                    <div class="detail-section">
+                        <h2 class="section-title">사용 방법</h2>
+                        <p class="section-content" id="detailUsage">사용법을 불러오는 중...</p>
+                    </div>
+
+                    <div class="detail-section">
+                        <h2 class="section-title">주요 특징</h2>
+                        <ul class="feature-list" id="detailFeatures">
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="detail-footer">
+                    <a href="index.html" class="cta-btn">
+                        ← 다른 제품 보기
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 리팜바이오(주). All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const params = new URLSearchParams(window.location.search);
+            const productName = params.get('product');
+
+            if (!productName) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            document.title = `${productName} - 리팜바이오(주)`;
+
+            const data = productData[productName];
+
+            const titleEl = document.getElementById('detailTitle');
+            const badgeEl = document.getElementById('detailBadge');
+            const stageEl = document.getElementById('detailStage');
+            const descEl = document.getElementById('detailDescription');
+            const usageEl = document.getElementById('detailUsage');
+            const featuresEl = document.getElementById('detailFeatures');
+
+            titleEl.textContent = productName;
+
+            if (data) {
+                badgeEl.textContent = data.category;
+                stageEl.textContent = `사용 단계: ${data.stage}`;
+                descEl.textContent = data.description;
+                usageEl.textContent = data.usage;
+                featuresEl.innerHTML = data.features
+                    .map(f => `<li class="feature-item"><span class="feature-check">✓</span> ${f}</li>`)
+                    .join('');
+            } else {
+                badgeEl.textContent = '제품 정보';
+                stageEl.textContent = '';
+                descEl.textContent = '이 제품에 대한 상세 정보가 준비 중입니다. 자세한 내용은 고객센터에 문의해주세요.';
+                usageEl.textContent = '담당자에게 문의해 주세요.';
+                featuresEl.innerHTML = '<li class="feature-item"><span class="feature-check">✓</span> 상세 정보 준비 중</li>';
+            }
+        });
+    </script>
+</body>
+
+</html>
