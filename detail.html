@@ -19,17 +19,16 @@
     <header class="header" id="header">
         <div class="header-inner">
             <a href="index.html" class="logo" style="text-decoration:none;">
-                <span class="logo-highlight">과학 농업 기술의 선두 주자 !</span> 리팜바이오<span class="logo-corp">㈜</span>
+                <img src="assets/logo.jpg" alt="리팜바이오 로고" class="logo-img">
+                <span class="logo-highlight">과학 농업을 추구하는</span> 리팜바이오<span class="logo-corp">㈜</span>
             </a>
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="메뉴 열기">
                 <span></span><span></span><span></span>
             </button>
             <nav class="nav" id="mainNav">
                 <a href="index.html" class="nav-link">홈</a>
-                <a href="#" class="nav-link">공지사항</a>
-                <a href="#" class="nav-link">인사말</a>
-                <a href="#" class="nav-link">찾아오시는길</a>
-                <a href="#" class="nav-link">게시판</a>
+                <a href="#" class="nav-link" onclick="openGreetingModal(); return false;">인사말</a>
+                <a href="#" class="nav-link" onclick="openLocationModal(); return false;">찾아오시는길</a>
             </nav>
         </div>
     </header>
@@ -84,8 +83,42 @@
         </div>
     </main>
 
+    <!-- 인사말 모달 -->
+    <div class="modal-overlay" id="greetingModal" onclick="closeGreetingModal(event)">
+        <div class="modal-content modal-content-wide">
+            <div class="modal-header">
+                <h2 class="modal-title">🏢 인사말</h2>
+                <button class="modal-close" onclick="closeGreetingModalBtn()">&times;</button>
+            </div>
+            <div class="modal-body modal-body-center">
+                <img src="assets/greeting.png" alt="리팜바이오 회사 소개" class="modal-full-img">
+            </div>
+        </div>
+    </div>
+
+    <!-- 찾아오시는길 모달 -->
+    <div class="modal-overlay" id="locationModal" onclick="closeLocationModal(event)">
+        <div class="modal-content modal-content-wide">
+            <div class="modal-header">
+                <h2 class="modal-title">📍 찾아오시는길</h2>
+                <button class="modal-close" onclick="closeLocationModalBtn()">&times;</button>
+            </div>
+            <div class="modal-body modal-body-center">
+                <img src="assets/map.png" alt="리팜바이오 위치 지도" class="modal-full-img">
+                <img src="assets/address.png" alt="주소 정보" class="modal-address-img">
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
-        <p>&copy; 2026 리팜바이오(주). All rights reserved.</p>
+        <div class="footer-info">
+            <img src="assets/logo.jpg" alt="리팜바이오 로고" class="footer-logo">
+            <div class="footer-address">
+                <p class="footer-addr-text">경기도 평택시 포승읍 직산동길 7</p>
+                <p class="footer-contact"><span class="contact-label">TEL</span> 031) 684-1257 &nbsp;&nbsp; <span class="contact-label">FAX</span> 031) 684-1258</p>
+            </div>
+        </div>
+        <p class="footer-copy">&copy; 2026 리팜바이오(주). All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>

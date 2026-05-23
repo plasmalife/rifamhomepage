@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="과학 농업 기술의 선두 주자 리팜바이오(주) - 생육 단계별 최적 제품 솔루션을 제공합니다.">
-    <title>리팜바이오(주) - 과학 농업 기술의 선두 주자</title>
+    <meta name="description" content="과학 농업을 추구하는 리팜바이오(주) - 생육 단계별 최적 제품 솔루션을 제공합니다.">
+    <title>리팜바이오(주) - 과학 농업을 추구하는</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <!-- 헤더 -->
     <header class="header" id="header">
         <div class="header-inner">
             <h1 class="logo">
-                <span class="logo-highlight">과학 농업 기술의 선두 주자 !</span> 리팜바이오<span class="logo-corp">㈜</span>
+                <img src="assets/logo.jpg" alt="리팜바이오 로고" class="logo-img">
+                <span class="logo-highlight">과학 농업을 추구하는</span> 리팜바이오<span class="logo-corp">㈜</span>
             </h1>
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="메뉴 열기">
                 <span></span><span></span><span></span>
             </button>
             <nav class="nav" id="mainNav">
-                <a href="#" class="nav-link" id="nav-notice">공지사항</a>
-                <a href="#" class="nav-link" id="nav-greeting">인사말</a>
-                <a href="#" class="nav-link" id="nav-location">찾아오시는길</a>
-                <a href="#" class="nav-link" id="nav-board">게시판</a>
+                <a href="#" class="nav-link" id="nav-greeting" onclick="openGreetingModal(); return false;">인사말</a>
+                <a href="#" class="nav-link" id="nav-location" onclick="openLocationModal(); return false;">찾아오시는길</a>
             </nav>
         </div>
     </header>
@@ -32,18 +34,23 @@
     <!-- 히어로 섹션 -->
     <section class="hero" id="hero">
         <div class="hero-bg">
-            <img src="assets/bg-main.png" alt="스마트팜 배경" class="hero-bg-img">
+            <img src="assets/bg-main.png" alt="딸기농장 배경" class="hero-bg-img">
             <div class="hero-overlay"></div>
         </div>
 
         <div class="hero-content">
             <div class="welcome-row">
-                <p class="guide-text animate-in">
-                    <span class="guide-icon">👇</span> 아래 단어를 누르시면 자료가 보입니다
+                <p class="guide-text guide-text-large animate-in">
+                    <span class="guide-icon">👇</span> 아래 상품을 누르면 자료가 보입니다
                 </p>
-                <p class="welcome-text animate-in">
-                    리팜바이오<span class="welcome-corp">㈜</span> 홈페이지 오신걸 환영합니다
-                </p>
+                <div class="welcome-right animate-in">
+                    <p class="welcome-text">
+                        리팜바이오<span class="welcome-corp">㈜</span> 홈페이지 오신걸 환영합니다
+                    </p>
+                    <button class="crop-calendar-btn crop-calendar-btn-large" id="cropCalendarBtn" onclick="toggleCropCalendar()">
+                        🌾 농작물 재배력 자료실
+                    </button>
+                </div>
             </div>
 
             <!-- 제품 테이블 -->
@@ -51,86 +58,81 @@
                 <div class="product-table">
                     <!-- 테이블 헤더 -->
                     <div class="table-header">
-                        <div class="col-stage">생육 단계</div>
-                        <div class="col-products">사용 가능한 리판바이오 제품명</div>
+                        <div class="col-stage">생육단계</div>
+                        <div class="col-products">제품명</div>
+                    </div>
+
+                    <!-- 밑거름 (정식 15일전) -->
+                    <div class="table-row stage-mitgeoreum" data-stage="밑거름">
+                        <div class="stage-cell">
+                            <span class="stage-name">밑거름</span>
+                            <span class="stage-desc">(정식 15일전)</span>
+                        </div>
+                        <div class="products-cell">
+                            <button class="product-btn" data-product="프로타민 입제"
+                                data-youtube="https://youtu.be/HSPp0nYybvU" onclick="goDetail(this)">프로타민 입제 <span class="video-icon">🎬</span></button>
+                            <button class="product-btn" data-product="다루마 입제"
+                                data-youtube="https://youtu.be/MvpSrpAg-aM" onclick="goDetail(this)">다루마 입제 <span class="video-icon">🎬</span></button>
+                            <button class="product-btn" data-product="오뚝이 메구미"
+                                data-youtube="https://youtu.be/9MkLtUVvqgQ" onclick="goDetail(this)">오뚝이 메구미 <span class="video-icon">🎬</span></button>
+                            <button class="product-btn" data-product="바다해유기"
+                                data-youtube="https://youtu.be/xGjCv7f7gLk" onclick="goDetail(this)">바다해유기 <span class="video-icon">🎬</span></button>
+                            <button class="product-btn" data-product="아그로믹 입제"
+                                onclick="goDetail(this)">아그로믹 입제</button>
+                        </div>
                     </div>
 
                     <!-- 정식기 -->
-                    <div class="table-row" data-stage="정식기">
+                    <div class="table-row stage-jeongshik" data-stage="정식기">
                         <div class="stage-cell">
                             <span class="stage-name">정식기</span>
-                            <span class="stage-desc">(밑거름, 침종, 초기 생육)</span>
                         </div>
                         <div class="products-cell">
-                            <button class="product-btn" data-product="프로타민(입제/액제)" onclick="goDetail(this)">프로타민(입제/액제)</button>
-                            <button class="product-btn" data-product="아그로믹(입제)" onclick="goDetail(this)">아그로믹(입제)</button>
-                            <button class="product-btn" data-product="아그로믹스" onclick="goDetail(this)">아그로믹스</button>
-                            <button class="product-btn" data-product="바다해유기" onclick="goDetail(this)">바다해유기</button>
-                            <button class="product-btn" data-product="오뚜기 골드" onclick="goDetail(this)">오뚜기 골드</button>
-                            <button class="product-btn" data-product="다루마" onclick="goDetail(this)">다루마</button>
-                            <button class="product-btn" data-product="매구미" onclick="goDetail(this)">매구미</button>
-                            <button class="product-btn" data-product="카이사르" onclick="goDetail(this)">카이사르</button>
-                            <button class="product-btn" data-product="황제균" onclick="goDetail(this)">황제균</button>
-                            <button class="product-btn" data-product="유레카" onclick="goDetail(this)">유레카</button>
-                            <button class="product-btn" data-product="금단비(금비아)" onclick="goDetail(this)">금단비(금비아)</button>
+                            <button class="product-btn" data-product="카이사르"
+                                data-youtube="https://youtu.be/YHpXzCPas_w" onclick="goDetail(this)">카이사르 <span class="video-icon">🎬</span></button>
+                            <button class="product-btn" data-product="황제균"
+                                data-youtube="https://youtu.be/0LB5IRWEJew" onclick="goDetail(this)">황제균 <span class="video-icon">🎬</span></button>
+                            <button class="product-btn" data-product="아그로믹 수화제"
+                                onclick="goDetail(this)">아그로믹 수화제</button>
+                            <button class="product-btn" data-product="유레카"
+                                data-youtube="https://youtu.be/U-I5cMLTwfQ" onclick="goDetail(this)">유레카 <span class="video-icon">🎬</span></button>
+                            <button class="product-btn" data-product="마니플렉스 칼"
+                                data-youtube="https://youtu.be/-vqBPePjNJM" onclick="goDetail(this)">마니플렉스 칼 <span class="video-icon">🎬</span></button>
                         </div>
                     </div>
 
-                    <!-- 개화기 -->
-                    <div class="table-row" data-stage="개화기">
+                    <!-- 전생육기 -->
+                    <div class="table-row stage-jeonsaeng" data-stage="전생육기">
                         <div class="stage-cell">
-                            <span class="stage-name">개화기</span>
+                            <span class="stage-name">전생육기</span>
                         </div>
                         <div class="products-cell">
-                            <button class="product-btn highlight-red" data-product="금단비(금비아)" onclick="goDetail(this)">금단비(금비아)</button>
-                            <button class="product-btn highlight-green" data-product="켈프팜" onclick="goDetail(this)">켈프팜</button>
-                            <button class="product-btn" data-product="마니플렉스 칼막" onclick="goDetail(this)">마니플렉스 칼막</button>
-                            <button class="product-btn" data-product="비바" onclick="goDetail(this)">비바</button>
-                            <button class="product-btn" data-product="클로립" onclick="goDetail(this)">클로립</button>
-                            <button class="product-btn" data-product="프로타민(액상)" onclick="goDetail(this)">프로타민(액상)</button>
-                        </div>
-                    </div>
-
-                    <!-- 착과기 -->
-                    <div class="table-row" data-stage="착과기">
-                        <div class="stage-cell">
-                            <span class="stage-name">착과기</span>
-                        </div>
-                        <div class="products-cell">
-                            <button class="product-btn highlight-red" data-product="금단비(금비아)" onclick="goDetail(this)">금단비(금비아)</button>
-                            <button class="product-btn highlight-green" data-product="보락스33" onclick="goDetail(this)">보락스33</button>
-                            <button class="product-btn" data-product="마니플렉스 칼막" onclick="goDetail(this)">마니플렉스 칼막</button>
-                            <button class="product-btn" data-product="맥스마이즈" onclick="goDetail(this)">맥스마이즈</button>
-                            <button class="product-btn" data-product="비바 클로립" onclick="goDetail(this)">비바 클로립</button>
-                        </div>
-                    </div>
-
-                    <!-- 비대기 -->
-                    <div class="table-row" data-stage="비대기">
-                        <div class="stage-cell">
-                            <span class="stage-name">비대기</span>
-                        </div>
-                        <div class="products-cell">
-                            <button class="product-btn highlight-green large-btn" data-product="TS 빅, 마니플렉스 케이" onclick="goDetail(this)">TS 빅,<br>마니플렉스 케이,</button>
-                            <button class="product-btn highlight-green large-btn" data-product="피드 빅" onclick="goDetail(this)">피드 빅,</button>
-                            <button class="product-btn highlight-green large-btn" data-product="왕방울 빅, 유레카" onclick="goDetail(this)">왕방울 빅,<br>유레카</button>
-                            <button class="product-btn highlight-green large-btn" data-product="비비오오다마" onclick="goDetail(this)">비비오오다마,</button>
-                            <button class="product-btn" data-product="마니플렉스 칼막" onclick="goDetail(this)">마니플렉스 칼막</button>
-                        </div>
-                    </div>
-
-                    <!-- 착색기 -->
-                    <div class="table-row" data-stage="착색기">
-                        <div class="stage-cell">
-                            <span class="stage-name">착색기</span>
-                            <span class="stage-desc">(수확 전 숙기)</span>
-                        </div>
-                        <div class="products-cell">
-                            <button class="product-btn" data-product="슈가렉스(K슈가렉스)" onclick="goDetail(this)">슈가렉스(K슈가렉스)</button>
-                            <button class="product-btn" data-product="마니플렉스 K" onclick="goDetail(this)">마니플렉스 K</button>
-                            <button class="product-btn" data-product="유기포타슘" onclick="goDetail(this)">유기포타슘</button>
-                            <button class="product-btn" data-product="참진칼" onclick="goDetail(this)">참진칼</button>
-                            <button class="product-btn" data-product="유레카(13)" onclick="goDetail(this)">유레카(13)</button>
+                            <button class="product-btn" data-product="마니플렉스 칼막"
+                                data-youtube="https://youtu.be/Rw_5yOZbZ2Y" onclick="goDetail(this)">마니플렉스 칼막 <span class="video-icon">🎬</span></button>
+                            <button class="product-btn" data-product="마니플렉스 케이"
+                                data-youtube="https://youtu.be/nbGiFo_gt9c" onclick="goDetail(this)">마니플렉스케이 <span class="video-icon">🎬</span></button>
+                            <button class="product-btn" data-product="켈프팜"
+                                data-youtube="https://youtu.be/XCn4Zm5nM6g" onclick="goDetail(this)">켈프팜 <span class="video-icon">🎬</span></button>
+                            <button class="product-btn" data-product="비비오오다마"
+                                data-youtube="https://youtu.be/p-TdhyW2X24" onclick="goDetail(this)">비비오오다마 <span class="video-icon">🎬</span></button>
+                            <button class="product-btn" data-product="비바클로립"
+                                data-youtube="https://youtu.be/pjc_7c7FaiE" onclick="goDetail(this)">비바클로립 <span class="video-icon">🎬</span></button>
+                            <button class="product-btn" data-product="참진칼"
+                                data-youtube="https://youtu.be/HF2GhWqlUZ0" onclick="goDetail(this)">참진칼 <span class="video-icon">🎬</span></button>
+                            <button class="product-btn" data-product="보락스 33"
+                                data-youtube="https://youtu.be/CiX4N5QNf_k" onclick="goDetail(this)">보락스 33 <span class="video-icon">🎬</span></button>
+                            <button class="product-btn" data-product="유레카"
+                                data-youtube="https://youtu.be/U-I5cMLTwfQ" onclick="goDetail(this)">유레카 <span class="video-icon">🎬</span></button>
+                            <button class="product-btn" data-product="프로타민액상"
+                                data-youtube="https://youtu.be/X1wPUdEtVmM" onclick="goDetail(this)">프로타민액상 <span class="video-icon">🎬</span></button>
+                            <button class="product-btn" data-product="금비아"
+                                data-youtube="https://youtu.be/IRJyOyQLyGs" onclick="goDetail(this)">금비아 <span class="video-icon">🎬</span></button>
+                            <button class="product-btn" data-product="티에스빅"
+                                data-youtube="https://youtu.be/xIFn5dlrfvI" onclick="goDetail(this)">티에스빅 <span class="video-icon">🎬</span></button>
+                            <button class="product-btn" data-product="슈가렉스"
+                                data-youtube="https://youtu.be/HFeFZy8pndI" onclick="goDetail(this)">슈가렉스 <span class="video-icon">🎬</span></button>
+                            <button class="product-btn" data-product="맥스마이즈"
+                                data-youtube="https://youtu.be/BC9GJA4NOiw" onclick="goDetail(this)">맥스마이즈 <span class="video-icon">🎬</span></button>
                         </div>
                     </div>
                 </div>
@@ -138,11 +140,339 @@
         </div>
     </section>
 
+    <!-- 농작물 재배력 모달 -->
+    <div class="modal-overlay" id="cropCalendarModal" onclick="closeCropCalendar(event)">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">🌾 농작물 재배력 🍈</h2>
+                <button class="modal-close" onclick="toggleCropCalendar()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="crop-guide-text">📋 상단에 농작물을 클릭하면 재배력이 보입니다</p>
+                <table class="crop-table">
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>작물</th>
+                            <th>재배 방식</th>
+                            <th>비고</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><a href="https://youtu.be/a-VQ3iQpFBA" target="_blank" rel="noopener" class="crop-link">🌶️ 고추</a></td>
+                            <td>일반 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><a href="https://youtu.be/Bv0EgFE5PEk" target="_blank" rel="noopener" class="crop-link">🍓 딸기 (토경)</a></td>
+                            <td>🌱 토경 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><a href="https://youtu.be/z64dnxZCNfI" target="_blank" rel="noopener" class="crop-link">🍓 딸기 (고설)</a></td>
+                            <td>🏗️ 고설 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><a href="https://youtu.be/VV9WuWQNY3U" target="_blank" rel="noopener" class="crop-link">🥒 오이</a></td>
+                            <td>🌱 토경 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><a href="https://youtu.be/xGvdvU1nOj0" target="_blank" rel="noopener" class="crop-link">🍈 메론 (토경)</a></td>
+                            <td>🌱 토경 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td><a href="https://youtu.be/C4sPNu9RL0U" target="_blank" rel="noopener" class="crop-link">🍅 토마토 (토경)</a></td>
+                            <td>🌱 토경 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td><a href="https://youtu.be/BHeE5pDI4G0" target="_blank" rel="noopener" class="crop-link">🍉 수박</a></td>
+                            <td>일반 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td><a href="https://youtu.be/Q1NFbS1zhxM" target="_blank" rel="noopener" class="crop-link">🍈 참외</a></td>
+                            <td>일반 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td><a href="https://youtu.be/bJE_sKSMZ1M" target="_blank" rel="noopener" class="crop-link">🥔 감자</a></td>
+                            <td>일반 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td><a href="https://youtu.be/LG8JVanon0M" target="_blank" rel="noopener" class="crop-link">🌿 깻잎</a></td>
+                            <td>일반 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td><a href="https://youtu.be/bZjfzi1Uxbk" target="_blank" rel="noopener" class="crop-link">🍈 메론 (수경)</a></td>
+                            <td>💧 수경 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td><a href="https://youtu.be/7RbEJ4H2rn4" target="_blank" rel="noopener" class="crop-link">🥒 애호박</a></td>
+                            <td>🌱 토경 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td><a href="https://youtu.be/CYuWu60k2uw" target="_blank" rel="noopener" class="crop-link">🧄 마늘</a></td>
+                            <td>🌱 토경 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td><a href="https://youtu.be/UjhPSH6EYUo" target="_blank" rel="noopener" class="crop-link">🧅 양파</a></td>
+                            <td>🌱 토경 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td><a href="https://youtu.be/NDLxYRQYgxo" target="_blank" rel="noopener" class="crop-link">🍑 복숭아</a></td>
+                            <td>🌳 과수 재배</td>
+                            <td>과수원</td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td><a href="https://youtu.be/X2tI3g1huZg" target="_blank" rel="noopener" class="crop-link">🫐 블루베리</a></td>
+                            <td>일반 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td><a href="https://youtu.be/qbKXqKzdmfM" target="_blank" rel="noopener" class="crop-link">🌿 무화과</a></td>
+                            <td>일반 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>18</td>
+                            <td><a href="https://youtu.be/WDYEfMsZx_4" target="_blank" rel="noopener" class="crop-link">🥬 양배추</a></td>
+                            <td>일반 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>19</td>
+                            <td><a href="https://youtu.be/5dhbzirf6G0" target="_blank" rel="noopener" class="crop-link">🧅 쪽파</a></td>
+                            <td>일반 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td><a href="https://youtu.be/a0I2Wa0g480" target="_blank" rel="noopener" class="crop-link">🌿 우엉</a></td>
+                            <td>일반 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>21</td>
+                            <td><a href="https://youtu.be/xYpy7x1AkIw" target="_blank" rel="noopener" class="crop-link">🫘 콩</a></td>
+                            <td>일반 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>22</td>
+                            <td><a href="https://youtu.be/B0BqFnaS3vY" target="_blank" rel="noopener" class="crop-link">🍆 가지</a></td>
+                            <td>일반 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>23</td>
+                            <td><a href="https://youtu.be/Eo5bytE8Q0g" target="_blank" rel="noopener" class="crop-link">🍅 방울토마토</a></td>
+                            <td>일반 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>24</td>
+                            <td><a href="https://youtu.be/76Yrj5I5d8k" target="_blank" rel="noopener" class="crop-link">🥬 상추</a></td>
+                            <td>일반 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>25</td>
+                            <td><a href="https://youtu.be/CB8PK8FQnzk" target="_blank" rel="noopener" class="crop-link">🌾 벼</a></td>
+                            <td>일반 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>26</td>
+                            <td><a href="https://youtu.be/Q54gP1S8moM" target="_blank" rel="noopener" class="crop-link">🌿 인삼</a></td>
+                            <td>일반 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>27</td>
+                            <td><a href="https://youtu.be/Mdbz2P47x_w" target="_blank" rel="noopener" class="crop-link">🌾 보리</a></td>
+                            <td>일반 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>28</td>
+                            <td><a href="https://youtu.be/3R0cbmv5LKs" target="_blank" rel="noopener" class="crop-link">🥬 배추</a></td>
+                            <td>일반 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>29</td>
+                            <td><a href="https://youtu.be/-Ih9i2rzx28" target="_blank" rel="noopener" class="crop-link">🍇 포도</a></td>
+                            <td>🌳 과수 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>30</td>
+                            <td><a href="https://youtu.be/jg0xf1Sh6fc" target="_blank" rel="noopener" class="crop-link">🍐 배</a></td>
+                            <td>🌳 과수 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>31</td>
+                            <td><a href="https://youtu.be/ftj5Gx3be7o" target="_blank" rel="noopener" class="crop-link">🍎 사과</a></td>
+                            <td>🌳 과수 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>32</td>
+                            <td><a href="https://youtu.be/Lgtqe5036F4" target="_blank" rel="noopener" class="crop-link">🍊 감</a></td>
+                            <td>🌳 과수 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>33</td>
+                            <td><a href="https://youtu.be/4pF4G5Mn54g" target="_blank" rel="noopener" class="crop-link">🍠 고구마</a></td>
+                            <td>일반 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>34</td>
+                            <td><a href="https://youtu.be/dVh__fUOnVw" target="_blank" rel="noopener" class="crop-link">🍇 샤인머스켓</a></td>
+                            <td>🌳 과수 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>35</td>
+                            <td><a href="https://youtu.be/lTYE1x72hyE" target="_blank" rel="noopener" class="crop-link">🍊 한라봉</a></td>
+                            <td>🌳 과수 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>36</td>
+                            <td><a href="https://youtu.be/POd3rUoAY-c" target="_blank" rel="noopener" class="crop-link">🍉 수박</a></td>
+                            <td>일반 재배</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>37</td>
+                            <td><a href="https://youtu.be/YOqDwjQlHAM?si=OqQJf6xxT47ce5pc" target="_blank" rel="noopener" class="crop-link">🌿 와사비</a></td>
+                            <td>일반 재배</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- 인사말 모달 -->
+    <div class="modal-overlay" id="greetingModal" onclick="closeGreetingModal(event)">
+        <div class="modal-content modal-content-wide">
+            <div class="modal-header">
+                <h2 class="modal-title">🏢 인사말</h2>
+                <button class="modal-close" onclick="closeGreetingModalBtn()">&times;</button>
+            </div>
+            <div class="modal-body greeting-body">
+                <!-- 회사 소개 헤더 -->
+                <div class="greeting-hero">
+                    <h2 class="greeting-title">리팜바이오 회사 소개</h2>
+                    <p class="greeting-subtitle">과학 농업을 추구하는 농업기술 개발 회사</p>
+                </div>
+
+                <!-- 사훈 -->
+                <div class="greeting-motto">
+                    <span class="motto-icon">💡</span>
+                    <span class="motto-label">사훈 :</span>
+                    <span class="motto-text">생각이 바뀌면 내가 바뀐다</span>
+                </div>
+
+                <!-- 핵심 사업 -->
+                <div class="greeting-section-title">
+                    <span>⚙️</span> 핵심 사업
+                </div>
+
+                <div class="greeting-cards">
+                    <div class="greeting-card card-green">
+                        <div class="card-number">01</div>
+                        <h3 class="card-title">수입 비료 전문 취급 업체</h3>
+                        <p class="card-desc">협력업체: 네덜란드(반이페렌사),미국(브랜트사),이탈리아,칠레,일본,노르웨이 등</p>
+                        <p class="card-desc">미국/유럽/남미 등 다양한 해외 비료 제품을 엄선하여 공급</p>
+                    </div>
+                    <div class="greeting-card card-teal">
+                        <div class="card-number">02</div>
+                        <h3 class="card-title">농업 컨설턴트 시스템 운영</h3>
+                        <p class="card-desc">현장 방문 농업 기술 상담 및 맞춤형 솔루션 제공</p>
+                    </div>
+                    <div class="greeting-card card-orange">
+                        <div class="card-number">03</div>
+                        <h3 class="card-title">농업인 맞춤형 재배력 제공</h3>
+                        <p class="card-desc">농작물 자원종류와 지역 환경에 맞는 농업기술 · 재배 컨설팅</p>
+                    </div>
+                    <div class="greeting-card card-red">
+                        <div class="card-number">04</div>
+                        <h3 class="card-title">플라즈마 농법 개발<br><small>(친환경 재배기술)</small></h3>
+                        <p class="card-desc">농업 선진국 농법 접목 플라즈마 기술을 활용한 친환경 농업 기술 개발 및 보급 확대</p>
+                    </div>
+                </div>
+
+                <!-- 우리의 외침 -->
+                <div class="greeting-slogan">
+                    <span class="slogan-icon">🌿</span>
+                    <span class="slogan-text">우리의 외침 : 비료는 <strong>적량, 적법, 적소, 적기</strong>가 핵심</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 찾아오시는길 모달 -->
+    <div class="modal-overlay" id="locationModal" onclick="closeLocationModal(event)">
+        <div class="modal-content modal-content-wide">
+            <div class="modal-header">
+                <h2 class="modal-title">📍 찾아오시는길</h2>
+                <button class="modal-close" onclick="closeLocationModalBtn()">&times;</button>
+            </div>
+            <div class="modal-body modal-body-center">
+                <img src="assets/map.png" alt="리팜바이오 위치 지도" class="modal-full-img">
+                <img src="assets/address.png" alt="주소 정보" class="modal-address-img">
+            </div>
+        </div>
+    </div>
+
     <!-- 푸터 -->
     <footer class="footer">
-        <p>&copy; 2026 리팜바이오(주). All rights reserved.</p>
+        <div class="footer-info">
+            <img src="assets/logo.jpg" alt="리팜바이오 로고" class="footer-logo">
+            <div class="footer-address">
+                <p class="footer-addr-text">경기도 평택시 포승읍 직산동길 7</p>
+                <p class="footer-contact"><span class="contact-label">TEL</span> 031) 684-1257 &nbsp;&nbsp; <span class="contact-label">FAX</span> 031) 684-1258</p>
+            </div>
+        </div>
+        <p class="footer-copy">&copy; 2026 리팜바이오(주). All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
 </body>
+
 </html>
